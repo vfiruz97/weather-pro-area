@@ -16,14 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Weather {
-  String get temp => throw _privateConstructorUsedError;
-  String get feelsLike => throw _privateConstructorUsedError;
-  String get tempMin => throw _privateConstructorUsedError;
-  String get tempMax => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
-  bool get isDay => throw _privateConstructorUsedError;
-  double get pop => throw _privateConstructorUsedError;
-  DateTime get dateTime => throw _privateConstructorUsedError;
+  String get cityName => throw _privateConstructorUsedError;
+  KtList<WeatherForecast> get forecasts => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $WeatherCopyWith<Weather> get copyWith => throw _privateConstructorUsedError;
@@ -33,15 +27,7 @@ mixin _$Weather {
 abstract class $WeatherCopyWith<$Res> {
   factory $WeatherCopyWith(Weather value, $Res Function(Weather) then) =
       _$WeatherCopyWithImpl<$Res>;
-  $Res call(
-      {String temp,
-      String feelsLike,
-      String tempMin,
-      String tempMax,
-      String description,
-      bool isDay,
-      double pop,
-      DateTime dateTime});
+  $Res call({String cityName, KtList<WeatherForecast> forecasts});
 }
 
 /// @nodoc
@@ -54,48 +40,18 @@ class _$WeatherCopyWithImpl<$Res> implements $WeatherCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? temp = freezed,
-    Object? feelsLike = freezed,
-    Object? tempMin = freezed,
-    Object? tempMax = freezed,
-    Object? description = freezed,
-    Object? isDay = freezed,
-    Object? pop = freezed,
-    Object? dateTime = freezed,
+    Object? cityName = freezed,
+    Object? forecasts = freezed,
   }) {
     return _then(_value.copyWith(
-      temp: temp == freezed
-          ? _value.temp
-          : temp // ignore: cast_nullable_to_non_nullable
+      cityName: cityName == freezed
+          ? _value.cityName
+          : cityName // ignore: cast_nullable_to_non_nullable
               as String,
-      feelsLike: feelsLike == freezed
-          ? _value.feelsLike
-          : feelsLike // ignore: cast_nullable_to_non_nullable
-              as String,
-      tempMin: tempMin == freezed
-          ? _value.tempMin
-          : tempMin // ignore: cast_nullable_to_non_nullable
-              as String,
-      tempMax: tempMax == freezed
-          ? _value.tempMax
-          : tempMax // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: description == freezed
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      isDay: isDay == freezed
-          ? _value.isDay
-          : isDay // ignore: cast_nullable_to_non_nullable
-              as bool,
-      pop: pop == freezed
-          ? _value.pop
-          : pop // ignore: cast_nullable_to_non_nullable
-              as double,
-      dateTime: dateTime == freezed
-          ? _value.dateTime
-          : dateTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+      forecasts: forecasts == freezed
+          ? _value.forecasts
+          : forecasts // ignore: cast_nullable_to_non_nullable
+              as KtList<WeatherForecast>,
     ));
   }
 }
@@ -105,15 +61,7 @@ abstract class _$WeatherCopyWith<$Res> implements $WeatherCopyWith<$Res> {
   factory _$WeatherCopyWith(_Weather value, $Res Function(_Weather) then) =
       __$WeatherCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {String temp,
-      String feelsLike,
-      String tempMin,
-      String tempMax,
-      String description,
-      bool isDay,
-      double pop,
-      DateTime dateTime});
+  $Res call({String cityName, KtList<WeatherForecast> forecasts});
 }
 
 /// @nodoc
@@ -127,23 +75,129 @@ class __$WeatherCopyWithImpl<$Res> extends _$WeatherCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? cityName = freezed,
+    Object? forecasts = freezed,
+  }) {
+    return _then(_Weather(
+      cityName: cityName == freezed
+          ? _value.cityName
+          : cityName // ignore: cast_nullable_to_non_nullable
+              as String,
+      forecasts: forecasts == freezed
+          ? _value.forecasts
+          : forecasts // ignore: cast_nullable_to_non_nullable
+              as KtList<WeatherForecast>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_Weather implements _Weather {
+  const _$_Weather({required this.cityName, required this.forecasts});
+
+  @override
+  final String cityName;
+  @override
+  final KtList<WeatherForecast> forecasts;
+
+  @override
+  String toString() {
+    return 'Weather(cityName: $cityName, forecasts: $forecasts)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _Weather &&
+            const DeepCollectionEquality().equals(other.cityName, cityName) &&
+            const DeepCollectionEquality().equals(other.forecasts, forecasts));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(cityName),
+      const DeepCollectionEquality().hash(forecasts));
+
+  @JsonKey(ignore: true)
+  @override
+  _$WeatherCopyWith<_Weather> get copyWith =>
+      __$WeatherCopyWithImpl<_Weather>(this, _$identity);
+}
+
+abstract class _Weather implements Weather {
+  const factory _Weather(
+      {required final String cityName,
+      required final KtList<WeatherForecast> forecasts}) = _$_Weather;
+
+  @override
+  String get cityName => throw _privateConstructorUsedError;
+  @override
+  KtList<WeatherForecast> get forecasts => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$WeatherCopyWith<_Weather> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$WeatherForecast {
+  String get temp => throw _privateConstructorUsedError;
+  String get tempMin => throw _privateConstructorUsedError;
+  String get tempMax => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  String get icon => throw _privateConstructorUsedError;
+  bool get isDay => throw _privateConstructorUsedError;
+  int get humidity => throw _privateConstructorUsedError;
+  DateTime get dateTime => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $WeatherForecastCopyWith<WeatherForecast> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $WeatherForecastCopyWith<$Res> {
+  factory $WeatherForecastCopyWith(
+          WeatherForecast value, $Res Function(WeatherForecast) then) =
+      _$WeatherForecastCopyWithImpl<$Res>;
+  $Res call(
+      {String temp,
+      String tempMin,
+      String tempMax,
+      String description,
+      String icon,
+      bool isDay,
+      int humidity,
+      DateTime dateTime});
+}
+
+/// @nodoc
+class _$WeatherForecastCopyWithImpl<$Res>
+    implements $WeatherForecastCopyWith<$Res> {
+  _$WeatherForecastCopyWithImpl(this._value, this._then);
+
+  final WeatherForecast _value;
+  // ignore: unused_field
+  final $Res Function(WeatherForecast) _then;
+
+  @override
+  $Res call({
     Object? temp = freezed,
-    Object? feelsLike = freezed,
     Object? tempMin = freezed,
     Object? tempMax = freezed,
     Object? description = freezed,
+    Object? icon = freezed,
     Object? isDay = freezed,
-    Object? pop = freezed,
+    Object? humidity = freezed,
     Object? dateTime = freezed,
   }) {
-    return _then(_Weather(
+    return _then(_value.copyWith(
       temp: temp == freezed
           ? _value.temp
           : temp // ignore: cast_nullable_to_non_nullable
-              as String,
-      feelsLike: feelsLike == freezed
-          ? _value.feelsLike
-          : feelsLike // ignore: cast_nullable_to_non_nullable
               as String,
       tempMin: tempMin == freezed
           ? _value.tempMin
@@ -157,14 +211,95 @@ class __$WeatherCopyWithImpl<$Res> extends _$WeatherCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      icon: icon == freezed
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as String,
       isDay: isDay == freezed
           ? _value.isDay
           : isDay // ignore: cast_nullable_to_non_nullable
               as bool,
-      pop: pop == freezed
-          ? _value.pop
-          : pop // ignore: cast_nullable_to_non_nullable
-              as double,
+      humidity: humidity == freezed
+          ? _value.humidity
+          : humidity // ignore: cast_nullable_to_non_nullable
+              as int,
+      dateTime: dateTime == freezed
+          ? _value.dateTime
+          : dateTime // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$WeatherForecastCopyWith<$Res>
+    implements $WeatherForecastCopyWith<$Res> {
+  factory _$WeatherForecastCopyWith(
+          _WeatherForecast value, $Res Function(_WeatherForecast) then) =
+      __$WeatherForecastCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {String temp,
+      String tempMin,
+      String tempMax,
+      String description,
+      String icon,
+      bool isDay,
+      int humidity,
+      DateTime dateTime});
+}
+
+/// @nodoc
+class __$WeatherForecastCopyWithImpl<$Res>
+    extends _$WeatherForecastCopyWithImpl<$Res>
+    implements _$WeatherForecastCopyWith<$Res> {
+  __$WeatherForecastCopyWithImpl(
+      _WeatherForecast _value, $Res Function(_WeatherForecast) _then)
+      : super(_value, (v) => _then(v as _WeatherForecast));
+
+  @override
+  _WeatherForecast get _value => super._value as _WeatherForecast;
+
+  @override
+  $Res call({
+    Object? temp = freezed,
+    Object? tempMin = freezed,
+    Object? tempMax = freezed,
+    Object? description = freezed,
+    Object? icon = freezed,
+    Object? isDay = freezed,
+    Object? humidity = freezed,
+    Object? dateTime = freezed,
+  }) {
+    return _then(_WeatherForecast(
+      temp: temp == freezed
+          ? _value.temp
+          : temp // ignore: cast_nullable_to_non_nullable
+              as String,
+      tempMin: tempMin == freezed
+          ? _value.tempMin
+          : tempMin // ignore: cast_nullable_to_non_nullable
+              as String,
+      tempMax: tempMax == freezed
+          ? _value.tempMax
+          : tempMax // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      icon: icon == freezed
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as String,
+      isDay: isDay == freezed
+          ? _value.isDay
+          : isDay // ignore: cast_nullable_to_non_nullable
+              as bool,
+      humidity: humidity == freezed
+          ? _value.humidity
+          : humidity // ignore: cast_nullable_to_non_nullable
+              as int,
       dateTime: dateTime == freezed
           ? _value.dateTime
           : dateTime // ignore: cast_nullable_to_non_nullable
@@ -175,21 +310,19 @@ class __$WeatherCopyWithImpl<$Res> extends _$WeatherCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Weather implements _Weather {
-  const _$_Weather(
+class _$_WeatherForecast implements _WeatherForecast {
+  const _$_WeatherForecast(
       {required this.temp,
-      required this.feelsLike,
       required this.tempMin,
       required this.tempMax,
       required this.description,
+      required this.icon,
       required this.isDay,
-      required this.pop,
+      required this.humidity,
       required this.dateTime});
 
   @override
   final String temp;
-  @override
-  final String feelsLike;
   @override
   final String tempMin;
   @override
@@ -197,30 +330,32 @@ class _$_Weather implements _Weather {
   @override
   final String description;
   @override
+  final String icon;
+  @override
   final bool isDay;
   @override
-  final double pop;
+  final int humidity;
   @override
   final DateTime dateTime;
 
   @override
   String toString() {
-    return 'Weather(temp: $temp, feelsLike: $feelsLike, tempMin: $tempMin, tempMax: $tempMax, description: $description, isDay: $isDay, pop: $pop, dateTime: $dateTime)';
+    return 'WeatherForecast(temp: $temp, tempMin: $tempMin, tempMax: $tempMax, description: $description, icon: $icon, isDay: $isDay, humidity: $humidity, dateTime: $dateTime)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Weather &&
+            other is _WeatherForecast &&
             const DeepCollectionEquality().equals(other.temp, temp) &&
-            const DeepCollectionEquality().equals(other.feelsLike, feelsLike) &&
             const DeepCollectionEquality().equals(other.tempMin, tempMin) &&
             const DeepCollectionEquality().equals(other.tempMax, tempMax) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
+            const DeepCollectionEquality().equals(other.icon, icon) &&
             const DeepCollectionEquality().equals(other.isDay, isDay) &&
-            const DeepCollectionEquality().equals(other.pop, pop) &&
+            const DeepCollectionEquality().equals(other.humidity, humidity) &&
             const DeepCollectionEquality().equals(other.dateTime, dateTime));
   }
 
@@ -228,35 +363,33 @@ class _$_Weather implements _Weather {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(temp),
-      const DeepCollectionEquality().hash(feelsLike),
       const DeepCollectionEquality().hash(tempMin),
       const DeepCollectionEquality().hash(tempMax),
       const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(icon),
       const DeepCollectionEquality().hash(isDay),
-      const DeepCollectionEquality().hash(pop),
+      const DeepCollectionEquality().hash(humidity),
       const DeepCollectionEquality().hash(dateTime));
 
   @JsonKey(ignore: true)
   @override
-  _$WeatherCopyWith<_Weather> get copyWith =>
-      __$WeatherCopyWithImpl<_Weather>(this, _$identity);
+  _$WeatherForecastCopyWith<_WeatherForecast> get copyWith =>
+      __$WeatherForecastCopyWithImpl<_WeatherForecast>(this, _$identity);
 }
 
-abstract class _Weather implements Weather {
-  const factory _Weather(
+abstract class _WeatherForecast implements WeatherForecast {
+  const factory _WeatherForecast(
       {required final String temp,
-      required final String feelsLike,
       required final String tempMin,
       required final String tempMax,
       required final String description,
+      required final String icon,
       required final bool isDay,
-      required final double pop,
-      required final DateTime dateTime}) = _$_Weather;
+      required final int humidity,
+      required final DateTime dateTime}) = _$_WeatherForecast;
 
   @override
   String get temp => throw _privateConstructorUsedError;
-  @override
-  String get feelsLike => throw _privateConstructorUsedError;
   @override
   String get tempMin => throw _privateConstructorUsedError;
   @override
@@ -264,13 +397,15 @@ abstract class _Weather implements Weather {
   @override
   String get description => throw _privateConstructorUsedError;
   @override
+  String get icon => throw _privateConstructorUsedError;
+  @override
   bool get isDay => throw _privateConstructorUsedError;
   @override
-  double get pop => throw _privateConstructorUsedError;
+  int get humidity => throw _privateConstructorUsedError;
   @override
   DateTime get dateTime => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$WeatherCopyWith<_Weather> get copyWith =>
+  _$WeatherForecastCopyWith<_WeatherForecast> get copyWith =>
       throw _privateConstructorUsedError;
 }

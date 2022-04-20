@@ -10,7 +10,7 @@ import 'package:weather/features/weather/infrastructure/weather_dto.dart';
 
 abstract class IWeatherLocal {
   // it gets from cache
-  Future<Either<WeatherFailure, KtList<Weather>>> get();
+  Future<Either<WeatherFailure, Weather>> get();
 
   // caches the last fresh weather info
   Future<void> cache(String json);
@@ -29,7 +29,7 @@ class WeatherLocal implements IWeatherLocal {
   }
 
   @override
-  Future<Either<WeatherFailure, KtList<Weather>>> get() async {
+  Future<Either<WeatherFailure, Weather>> get() async {
     try {
       var box = await Hive.openBox(boxName);
       final String? _jsonData = box.get(key, defaultValue: null);
@@ -37,13 +37,9 @@ class WeatherLocal implements IWeatherLocal {
       if (_jsonData == null) return const Left(WeatherFailure.noConnection());
       final _data = jsonDecode(_jsonData);
 
-      final _res = KtList.from(
-        (_data['list'] as List<dynamic>).map(
-          (item) => WeatherDto.fromMap(item).toDomain(),
-        ),
-      );
-      return Right(_res);
-    } catch (e) {
+      final weather = WeatherDto.fromMap(_data).toDomain();
+      return Right(weather);
+    } catch (_) {
       return const Left(WeatherFailure.unexpected());
     }
   }

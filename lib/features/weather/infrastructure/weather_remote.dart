@@ -15,7 +15,7 @@ import 'package:weather/modules/dio/dio.dart';
 
 abstract class IWeatherRemote {
   // gets from remote server
-  Future<Either<WeatherFailure, KtList<Weather>>> get({
+  Future<Either<WeatherFailure, Weather>> get({
     required double lat,
     required double lon,
     Language lang = Language.en,
@@ -30,7 +30,7 @@ class WeatherRemote implements IWeatherRemote {
   WeatherRemote({required this.weatherLocal});
 
   @override
-  Future<Either<WeatherFailure, KtList<Weather>>> get({
+  Future<Either<WeatherFailure, Weather>> get({
     required double lat,
     required double lon,
     Language lang = Language.en,
@@ -43,16 +43,12 @@ class WeatherRemote implements IWeatherRemote {
       final response = await getDio().get(Uri.encodeFull(url));
       Map<String, dynamic> _data = RemoteDataSource.returnDioResponse(response);
 
-      final _res = KtList.from(
-        (_data['list'] as List<dynamic>).map(
-          (item) => WeatherDto.fromMap(item).toDomain(),
-        ),
-      );
-
+      final weather = WeatherDto.fromMap(_data).toDomain();
+      
       // cache the respone
       weatherLocal.cache(jsonEncode(response.data));
 
-      return Right(_res);
+      return Right(weather);
     } catch (_) {
       return const Left(WeatherFailure.unexpected());
     }

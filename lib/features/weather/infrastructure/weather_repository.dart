@@ -24,7 +24,7 @@ class WeatherRepository implements IWeatherRepository {
   });
 
   @override
-  Future<Either<WeatherFailure, KtList<Weather>>> get({
+  Future<Either<WeatherFailure, Weather>> get({
     required double lat,
     required double lon,
     Language lang = Language.en,
