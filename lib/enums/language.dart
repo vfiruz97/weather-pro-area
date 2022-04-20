@@ -8,7 +8,7 @@ extension LanguageExtension on Language {
       case Language.ru:
         return 'ru';
       default:
-        return 'en';
+        return 'Unknown';
     }
   }
 }

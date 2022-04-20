@@ -13,11 +13,12 @@ import 'package:internet_connection_checker/internet_connection_checker.dart'
 import '../../features/geolocation/infrastructure/location_local.dart' as _i4;
 import '../../features/geolocation/infrastructure/location_repository.dart'
     as _i8;
+import '../../features/weather/application/weather/weather_bloc.dart' as _i11;
 import '../../features/weather/domain/i_weather_repository.dart' as _i9;
 import '../../features/weather/infrastructure/weather_local.dart' as _i5;
 import '../../features/weather/infrastructure/weather_remote.dart' as _i6;
 import '../../features/weather/infrastructure/weather_repository.dart' as _i10;
-import 'injection.dart' as _i11; // ignore_for_file: unnecessary_lambdas
+import 'injection.dart' as _i12; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -39,7 +40,9 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       weatherLocal: get<_i5.IWeatherLocal>(),
       weatherRemote: get<_i6.IWeatherRemote>(),
       internetConnectionChecker: get<_i7.InternetConnectionChecker>()));
+  gh.factory<_i11.WeatherBloc>(
+      () => _i11.WeatherBloc(get<_i9.IWeatherRepository>()));
   return get;
 }
 
-class _$RegisterModule extends _i11.RegisterModule {}
+class _$RegisterModule extends _i12.RegisterModule {}

@@ -47,7 +47,6 @@ class WeatherRemote implements IWeatherRemote {
       
       // cache the respone
       weatherLocal.cache(jsonEncode(response.data));
-
       return Right(weather);
     } catch (_) {
       return const Left(WeatherFailure.unexpected());

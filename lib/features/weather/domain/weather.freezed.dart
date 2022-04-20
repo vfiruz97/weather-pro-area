@@ -93,8 +93,9 @@ class __$WeatherCopyWithImpl<$Res> extends _$WeatherCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Weather implements _Weather {
-  const _$_Weather({required this.cityName, required this.forecasts});
+class _$_Weather extends _Weather {
+  const _$_Weather({required this.cityName, required this.forecasts})
+      : super._();
 
   @override
   final String cityName;
@@ -127,10 +128,11 @@ class _$_Weather implements _Weather {
       __$WeatherCopyWithImpl<_Weather>(this, _$identity);
 }
 
-abstract class _Weather implements Weather {
+abstract class _Weather extends Weather {
   const factory _Weather(
       {required final String cityName,
       required final KtList<WeatherForecast> forecasts}) = _$_Weather;
+  const _Weather._() : super._();
 
   @override
   String get cityName => throw _privateConstructorUsedError;
@@ -310,7 +312,7 @@ class __$WeatherForecastCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_WeatherForecast implements _WeatherForecast {
+class _$_WeatherForecast extends _WeatherForecast {
   const _$_WeatherForecast(
       {required this.temp,
       required this.tempMin,
@@ -319,7 +321,8 @@ class _$_WeatherForecast implements _WeatherForecast {
       required this.icon,
       required this.isDay,
       required this.humidity,
-      required this.dateTime});
+      required this.dateTime})
+      : super._();
 
   @override
   final String temp;
@@ -377,7 +380,7 @@ class _$_WeatherForecast implements _WeatherForecast {
       __$WeatherForecastCopyWithImpl<_WeatherForecast>(this, _$identity);
 }
 
-abstract class _WeatherForecast implements WeatherForecast {
+abstract class _WeatherForecast extends WeatherForecast {
   const factory _WeatherForecast(
       {required final String temp,
       required final String tempMin,
@@ -387,6 +390,7 @@ abstract class _WeatherForecast implements WeatherForecast {
       required final bool isDay,
       required final int humidity,
       required final DateTime dateTime}) = _$_WeatherForecast;
+  const _WeatherForecast._() : super._();
 
   @override
   String get temp => throw _privateConstructorUsedError;

@@ -49,6 +49,8 @@ dependencies:
   location: ^4.3.0
   shared_preferences: ^2.0.13
   geolocator: ^8.2.0
+  intl: ^0.17.0
+  cached_network_image: ^3.2.0
 
 dev_dependencies:
   flutter_test:

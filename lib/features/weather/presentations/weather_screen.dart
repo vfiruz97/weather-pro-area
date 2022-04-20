@@ -1,10 +1,12 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather/enums/weather_display_mode.dart';
 import 'package:weather/features/geolocation/domain/coordinate_pair.dart';
-import 'package:weather/features/weather/domain/failures.dart';
-import 'package:weather/features/weather/domain/i_weather_repository.dart';
-import 'package:weather/features/weather/domain/weather.dart';
-import 'package:weather/modules/injection/injection.dart';
+import 'package:weather/features/weather/application/weather/weather_bloc.dart';
+import 'package:weather/features/weather/presentations/widgets/weather_daily_forecast.dart';
+import 'package:weather/features/weather/presentations/widgets/weather_error.dart';
+import 'package:weather/features/weather/presentations/widgets/weather_hourly_forcast.dart';
+import 'package:weather/features/weather/presentations/widgets/weather_loading.dart';
 
 class WeatherScreen extends StatelessWidget {
   final CoordinatePair coordinate;
@@ -13,51 +15,48 @@ class WeatherScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final weatherBloc = context.watch<WeatherBloc>();
+
+    if (weatherBloc.state.loading) {
+      return const WeatherLoading();
+    }
+
     return Scaffold(
-      body: SafeArea(
-        child: Builder(builder: (context) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: FutureBuilder<Either<WeatherFailure, Weather>>(
-              future: getIt<IWeatherRepository>().get(lat: coordinate.latitude, lon: coordinate.longitude),
-              builder: (context, snapshot) {
-                final _weather = snapshot.data;
-
-                if (_weather == null) {
-                  return const Center(child: CircularProgressIndicator());
-                }
-
-                return _weather.fold(
-                  (_) => const Center(
-                    child: Text('Occurred an error'),
-                  ),
-                  (weather) => ListView.builder(
-                    itemCount: weather.forecasts.size,
-                    itemBuilder: (context, i) {
-                      final w = weather.forecasts.get(i);
-                      return ListTile(
-                        title: Container(
-                          color: w.isDay ? Colors.yellow : Colors.grey,
-                          child: Column(
-                            children: [
-                              Text("Temp: ${w.temp}"),
-                              Text("tempMin: ${w.tempMin}"),
-                              Text("tempMax: ${w.tempMax}"),
-                              Text("humidity: ${w.humidity}"),
-                              Text("description: ${w.description}"),
-                              Text("icon: ${w.icon}"),
-                              Text("dateTime: ${w.dateTime}"),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                  ),
+      appBar: AppBar(
+        title: const Text('Weather'),
+        actions: [
+          PopupMenuButton<WeatherDisplayMode>(
+            onSelected: (choice) => weatherBloc.add(WeatherEvent.changeDisplayMode(choice)),
+            initialValue: weatherBloc.state.displayMode,
+            icon: const Icon(Icons.menu_open),
+            tooltip: 'Mode',
+            itemBuilder: (BuildContext context) {
+              return WeatherDisplayMode.values.map((choice) {
+                return PopupMenuItem<WeatherDisplayMode>(
+                  value: choice,
+                  child: Text(choice.value),
                 );
-              },
+              }).toList();
+            },
+          ),
+        ],
+      ),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(8),
+          child: weatherBloc.state.failureOrSuccess?.fold(
+            (failure) => failure.map(
+              unexpected: (_) => const WeatherError(errorMessage: 'Unexpected error'),
+              noConnection: (_) => const WeatherError(errorMessage: 'No connection'),
             ),
-          );
-        }),
+            (weather) {
+              if (weatherBloc.state.displayMode == WeatherDisplayMode.hourly) {
+                return WeatherHourlyForecast(weather: weather);
+              }
+              return WeatherDailyForecast(weather: weather);
+            },
+          ),
+        ),
       ),
     );
   }

@@ -10,7 +10,7 @@ extension WeatherUnitExtension on WeatherUnit {
       case WeatherUnit.standard:
         return 'standard';
       default:
-        return 'standard';
+        return 'Unknown';
     }
   }
 }
