@@ -17,7 +17,7 @@ abstract class IWeatherLocal {
 }
 
 /// Implementation [IWeatherLocal]
-@Injectable(as: IWeatherLocal)
+@Singleton(as: IWeatherLocal)
 class WeatherLocal implements IWeatherLocal {
   final boxName = 'weather_cache';
   final key = 'data';

@@ -24,7 +24,7 @@ abstract class IWeatherRemote {
 }
 
 /// Implementation [IWeatherRemote]
-@Injectable(as: IWeatherRemote)
+@Singleton(as: IWeatherRemote)
 class WeatherRemote implements IWeatherRemote {
   final IWeatherLocal weatherLocal;
   WeatherRemote({required this.weatherLocal});

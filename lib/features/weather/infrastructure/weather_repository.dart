@@ -11,7 +11,7 @@ import 'package:weather/features/weather/domain/weather.dart';
 import 'package:weather/features/weather/infrastructure/weather_local.dart';
 import 'package:weather/features/weather/infrastructure/weather_remote.dart';
 
-@Injectable(as: IWeatherRepository)
+@Singleton(as: IWeatherRepository)
 class WeatherRepository implements IWeatherRepository {
   final IWeatherLocal weatherLocal;
   final IWeatherRemote weatherRemote;

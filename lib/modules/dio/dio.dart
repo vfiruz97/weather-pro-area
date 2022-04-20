@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:weather/configs/configs.dart';
 
 Dio getDio() {
+  final baseUrl = Configs.weatherApi.baseUrl;
   Dio dio = Dio(
-    BaseOptions(baseUrl: 'https://api.openweathermap.org'),
+    BaseOptions(baseUrl: baseUrl),
   );
   dio.interceptors.add(InterceptorsWrapper(onRequest: (RequestOptions options, handler) async {
     // Todo
@@ -24,7 +26,7 @@ class RemoteDataSource {
         throw Exception(response.data);
       case 500:
       default:
-        throw Exception('Error occured while Communication with Server with StatusCode : ${response.statusCode}');
+        throw Exception('Error occurred while Communication with Server with StatusCode : ${response.statusCode}');
     }
   }
 }
