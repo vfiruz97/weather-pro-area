@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:weather/enums/language.dart';
 import 'package:weather/enums/weather_display_mode.dart';
 import 'package:weather/enums/weather_unit.dart';
 import 'package:weather/features/weather/domain/failures.dart';
@@ -29,7 +29,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     final res = await weatherRepository.get(
       lat: event.lat,
       lon: event.lon,
-      lang: event.lang,
+      locale: event.locale,
       units: event.units,
     );
 

@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:weather/features/geolocation/domain/coordinate_pair.dart';
 
 /// [_WeatherApiConfigs] has configs of weather api
@@ -22,6 +23,8 @@ class _GeoLocationConfigs {
 
 class Configs {
   const Configs._();
+  // Default locale
+  static const Locale defaultLocale = Locale('en');
 
   // Weather api configs
   static const _WeatherApiConfigs weatherApi = _WeatherApiConfigs._();

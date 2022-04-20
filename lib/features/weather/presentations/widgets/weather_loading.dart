@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class WeatherLoading extends StatelessWidget {
   const WeatherLoading({
@@ -8,7 +9,7 @@ class WeatherLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Weather')),
+      appBar: AppBar(title: Text(AppLocalizations.of(context)!.appTitle)),
       body: const Center(child: CircularProgressIndicator()),
     );
   }

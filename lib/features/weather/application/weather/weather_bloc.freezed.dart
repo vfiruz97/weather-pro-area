@@ -19,21 +19,21 @@ mixin _$WeatherEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            double lat, double lon, Language lang, WeatherUnit units)
+            double lat, double lon, Locale locale, WeatherUnit units)
         load,
     required TResult Function(WeatherDisplayMode displayMode) changeDisplayMode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(double lat, double lon, Language lang, WeatherUnit units)?
+    TResult Function(double lat, double lon, Locale locale, WeatherUnit units)?
         load,
     TResult Function(WeatherDisplayMode displayMode)? changeDisplayMode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(double lat, double lon, Language lang, WeatherUnit units)?
+    TResult Function(double lat, double lon, Locale locale, WeatherUnit units)?
         load,
     TResult Function(WeatherDisplayMode displayMode)? changeDisplayMode,
     required TResult orElse(),
@@ -80,7 +80,7 @@ class _$WeatherEventCopyWithImpl<$Res> implements $WeatherEventCopyWith<$Res> {
 abstract class _$LoadCopyWith<$Res> {
   factory _$LoadCopyWith(_Load value, $Res Function(_Load) then) =
       __$LoadCopyWithImpl<$Res>;
-  $Res call({double lat, double lon, Language lang, WeatherUnit units});
+  $Res call({double lat, double lon, Locale locale, WeatherUnit units});
 }
 
 /// @nodoc
@@ -96,7 +96,7 @@ class __$LoadCopyWithImpl<$Res> extends _$WeatherEventCopyWithImpl<$Res>
   $Res call({
     Object? lat = freezed,
     Object? lon = freezed,
-    Object? lang = freezed,
+    Object? locale = freezed,
     Object? units = freezed,
   }) {
     return _then(_Load(
@@ -108,10 +108,10 @@ class __$LoadCopyWithImpl<$Res> extends _$WeatherEventCopyWithImpl<$Res>
           ? _value.lon
           : lon // ignore: cast_nullable_to_non_nullable
               as double,
-      lang: lang == freezed
-          ? _value.lang
-          : lang // ignore: cast_nullable_to_non_nullable
-              as Language,
+      locale: locale == freezed
+          ? _value.locale
+          : locale // ignore: cast_nullable_to_non_nullable
+              as Locale,
       units: units == freezed
           ? _value.units
           : units // ignore: cast_nullable_to_non_nullable
@@ -126,7 +126,7 @@ class _$_Load implements _Load {
   const _$_Load(
       {required this.lat,
       required this.lon,
-      required this.lang,
+      required this.locale,
       required this.units});
 
   @override
@@ -134,13 +134,13 @@ class _$_Load implements _Load {
   @override
   final double lon;
   @override
-  final Language lang;
+  final Locale locale;
   @override
   final WeatherUnit units;
 
   @override
   String toString() {
-    return 'WeatherEvent.load(lat: $lat, lon: $lon, lang: $lang, units: $units)';
+    return 'WeatherEvent.load(lat: $lat, lon: $lon, locale: $locale, units: $units)';
   }
 
   @override
@@ -150,7 +150,7 @@ class _$_Load implements _Load {
             other is _Load &&
             const DeepCollectionEquality().equals(other.lat, lat) &&
             const DeepCollectionEquality().equals(other.lon, lon) &&
-            const DeepCollectionEquality().equals(other.lang, lang) &&
+            const DeepCollectionEquality().equals(other.locale, locale) &&
             const DeepCollectionEquality().equals(other.units, units));
   }
 
@@ -159,7 +159,7 @@ class _$_Load implements _Load {
       runtimeType,
       const DeepCollectionEquality().hash(lat),
       const DeepCollectionEquality().hash(lon),
-      const DeepCollectionEquality().hash(lang),
+      const DeepCollectionEquality().hash(locale),
       const DeepCollectionEquality().hash(units));
 
   @JsonKey(ignore: true)
@@ -171,33 +171,33 @@ class _$_Load implements _Load {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            double lat, double lon, Language lang, WeatherUnit units)
+            double lat, double lon, Locale locale, WeatherUnit units)
         load,
     required TResult Function(WeatherDisplayMode displayMode) changeDisplayMode,
   }) {
-    return load(lat, lon, lang, units);
+    return load(lat, lon, locale, units);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(double lat, double lon, Language lang, WeatherUnit units)?
+    TResult Function(double lat, double lon, Locale locale, WeatherUnit units)?
         load,
     TResult Function(WeatherDisplayMode displayMode)? changeDisplayMode,
   }) {
-    return load?.call(lat, lon, lang, units);
+    return load?.call(lat, lon, locale, units);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(double lat, double lon, Language lang, WeatherUnit units)?
+    TResult Function(double lat, double lon, Locale locale, WeatherUnit units)?
         load,
     TResult Function(WeatherDisplayMode displayMode)? changeDisplayMode,
     required TResult orElse(),
   }) {
     if (load != null) {
-      return load(lat, lon, lang, units);
+      return load(lat, lon, locale, units);
     }
     return orElse();
   }
@@ -238,12 +238,12 @@ abstract class _Load implements WeatherEvent {
   const factory _Load(
       {required final double lat,
       required final double lon,
-      required final Language lang,
+      required final Locale locale,
       required final WeatherUnit units}) = _$_Load;
 
   double get lat => throw _privateConstructorUsedError;
   double get lon => throw _privateConstructorUsedError;
-  Language get lang => throw _privateConstructorUsedError;
+  Locale get locale => throw _privateConstructorUsedError;
   WeatherUnit get units => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$LoadCopyWith<_Load> get copyWith => throw _privateConstructorUsedError;
@@ -316,7 +316,7 @@ class _$_ChangeDisplayMode implements _ChangeDisplayMode {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            double lat, double lon, Language lang, WeatherUnit units)
+            double lat, double lon, Locale locale, WeatherUnit units)
         load,
     required TResult Function(WeatherDisplayMode displayMode) changeDisplayMode,
   }) {
@@ -326,7 +326,7 @@ class _$_ChangeDisplayMode implements _ChangeDisplayMode {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(double lat, double lon, Language lang, WeatherUnit units)?
+    TResult Function(double lat, double lon, Locale locale, WeatherUnit units)?
         load,
     TResult Function(WeatherDisplayMode displayMode)? changeDisplayMode,
   }) {
@@ -336,7 +336,7 @@ class _$_ChangeDisplayMode implements _ChangeDisplayMode {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(double lat, double lon, Language lang, WeatherUnit units)?
+    TResult Function(double lat, double lon, Locale locale, WeatherUnit units)?
         load,
     TResult Function(WeatherDisplayMode displayMode)? changeDisplayMode,
     required TResult orElse(),

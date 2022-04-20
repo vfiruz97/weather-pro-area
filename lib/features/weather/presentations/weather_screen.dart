@@ -7,6 +7,7 @@ import 'package:weather/features/weather/presentations/widgets/weather_daily_for
 import 'package:weather/features/weather/presentations/widgets/weather_error.dart';
 import 'package:weather/features/weather/presentations/widgets/weather_hourly_forcast.dart';
 import 'package:weather/features/weather/presentations/widgets/weather_loading.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class WeatherScreen extends StatelessWidget {
   final CoordinatePair coordinate;
@@ -23,13 +24,13 @@ class WeatherScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Weather'),
+        title: Text(AppLocalizations.of(context)!.appTitle),
         actions: [
           PopupMenuButton<WeatherDisplayMode>(
             onSelected: (choice) => weatherBloc.add(WeatherEvent.changeDisplayMode(choice)),
             initialValue: weatherBloc.state.displayMode,
             icon: const Icon(Icons.menu_open),
-            tooltip: 'Mode',
+            tooltip: AppLocalizations.of(context)!.mode,
             itemBuilder: (BuildContext context) {
               return WeatherDisplayMode.values.map((choice) {
                 return PopupMenuItem<WeatherDisplayMode>(
@@ -46,8 +47,8 @@ class WeatherScreen extends StatelessWidget {
           padding: const EdgeInsets.all(8),
           child: weatherBloc.state.failureOrSuccess?.fold(
             (failure) => failure.map(
-              unexpected: (_) => const WeatherError(errorMessage: 'Unexpected error'),
-              noConnection: (_) => const WeatherError(errorMessage: 'No connection'),
+              unexpected: (_) => WeatherError(errorMessage: AppLocalizations.of(context)!.internetDisconnected),
+              noConnection: (_) => WeatherError(errorMessage: AppLocalizations.of(context)!.unexpectedError),
             ),
             (weather) {
               if (weatherBloc.state.displayMode == WeatherDisplayMode.hourly) {

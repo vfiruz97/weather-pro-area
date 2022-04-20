@@ -1,0 +1,6 @@
+{
+    "appTitle" : "Weather App",
+    "mode" : "Mode",
+    "internetDisconnected" : "You are disconnected from the internet.",
+    "unexpectedError" : "Occurred an unexpected error."
+  }

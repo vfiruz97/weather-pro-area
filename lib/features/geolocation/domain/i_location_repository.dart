@@ -1,4 +1,4 @@
-import 'package:dartz/dartz.dart';
+
 import 'package:weather/features/geolocation/domain/coordinate_pair.dart';
 import 'package:weather/features/geolocation/domain/exceptions.dart';
 

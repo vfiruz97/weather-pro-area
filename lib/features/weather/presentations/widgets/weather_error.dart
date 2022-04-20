@@ -10,13 +10,10 @@ class WeatherError extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Weather')),
-      body: Center(
-        child: Text(
-          errorMessage,
-          style: Theme.of(context).textTheme.displayMedium,
-        ),
+    return Center(
+      child: Text(
+        errorMessage,
+        style: Theme.of(context).textTheme.displayMedium,
       ),
     );
   }

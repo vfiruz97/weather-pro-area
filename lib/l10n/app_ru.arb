@@ -1,0 +1,6 @@
+{
+    "appTitle" : "Погода",
+    "mode" : "Режим",
+    "internetDisconnected" : "Вы отключены от Интернета.",
+    "unexpectedError" : "Произошла непредвиденная ошибка"
+  }
