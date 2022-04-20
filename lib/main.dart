@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -8,19 +11,23 @@ import 'package:weather/features/geolocation/infrastructure/location_repository.
 import 'package:weather/modules/injection/injection.dart';
 import 'package:weather/router/router.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  // Makes instances of classes for DI
-  configureInjection(Environment.dev);
+void main() => runZonedGuarded(
+      () async {
+        WidgetsFlutterBinding.ensureInitialized();
 
-  // Initial Hive local database
-  await Hive.initFlutter();
+        // Makes instances of classes for DI
+        configureInjection(Environment.dev);
 
-  // Forces device orientation to be portrait
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+        // Initial Hive local database
+        await Hive.initFlutter();
 
-  runApp(const WeatherApp());
-}
+        // Forces device orientation to be portrait
+        SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+
+        Future.delayed(const Duration(seconds: 3), () => runApp(const WeatherApp()));
+      },
+      (error, stackTrace) {/* send error */},
+    );
 
 class WeatherApp extends StatelessWidget {
   const WeatherApp({Key? key}) : super(key: key);

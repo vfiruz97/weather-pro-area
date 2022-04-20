@@ -68,6 +68,11 @@ dev_dependencies:
   freezed: ^2.0.0
   injectable_generator: ^1.5.3
   json_serializable: ^6.1.6
+  flutter_native_splash: ^2.1.6
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/splash.png
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
